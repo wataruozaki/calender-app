@@ -4,12 +4,17 @@ import * as styles from './style.css';
 import { Typography } from '@material-ui/core';
 import dayjs from 'dayjs';
 
-import { isFirstDay, isSomeDay, isSomeMonth } from '../../services/calendar';
+import {
+  getMonth,
+  isFirstDay,
+  isSomeDay,
+  isSomeMonth,
+} from '../../services/calendar';
 
-const CalenderElement = ({ day }) => {
+const CalenderElement = ({ day, month }) => {
   const today = dayjs();
-
-  const isCurrentMouth = isSomeMonth(day, today);
+  const currentMouth = getMonth(month);
+  const isCurrentMouth = isSomeMonth(day, currentMouth);
   const textColor = isCurrentMouth ? 'textPrimary' : 'textSecondary';
 
   const format = isFirstDay(day) ? 'M月D日' : 'D';
